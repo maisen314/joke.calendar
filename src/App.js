@@ -16,10 +16,6 @@ function App() {
         <Route path="/" exact element={<FrontPage />} />
 
         <Route path="/luke/:door" element={<ResponsePage />} />
-        {/* <Route
-          path="/praktisk-informasjon"
-          element={<PracticalInformationPage />}
-        /> */}
         <Route path="/takk" element={<ThankYouPage />} />
         <Route path="/tidligere-luker" element={<PreviousDoors />} />
         <Route path="/admin" element={<AdminPage />} />

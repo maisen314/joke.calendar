@@ -10,8 +10,9 @@ function AdminPage() {
     }
 
     function addUserWithPassword(userWithPassword) {
+        const dbName = `${userWithPassword.password}${userWithPassword.username}`;
         fetch(
-          "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/userWithPassword.json",
+          `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/${dbName}.json`,
           {
             method: "POST",
             body: JSON.stringify(userWithPassword),

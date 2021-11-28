@@ -6,12 +6,9 @@ function MainNavigation() {
   const door = today.getDate().toString();
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Vitsekalender</div>
+      <Link to="/" className={classes.logo}>Vitsekalender</Link>
       <nav>
         <ul>
-          <li>
-            <Link to="/">Oversikt</Link>
-          </li>
           <li>
             <Link to={`/luke/${door}`}>Dagens luke</Link>
           </li>

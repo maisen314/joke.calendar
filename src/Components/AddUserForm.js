@@ -8,7 +8,7 @@ function AddUserFrom(props){
     const pwdRef = useRef();
 
     function addUser(user){
-        fetch("https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/username.json")
+        fetch(`https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/username.json`)
             .then((response) => {
             return response?.json()
           }).then((data) => {

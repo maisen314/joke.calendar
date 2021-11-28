@@ -16,7 +16,7 @@ function ResponseForm(props){
         event.preventDefault();
         
         const submittedForm = {
-            name: nameRef.current.value,
+            username: nameRef.current.value,
             password: pwdRef.current.value,
             answer: messageRef.current.value,
             question: getTodaysQuestion(door),
