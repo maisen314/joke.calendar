@@ -13,10 +13,9 @@ function AddUserFrom(props){
             return response?.json()
           }).then((data) => {
               if (data){
-                // eslint-disable-next-line 
                 Object.keys(data).forEach(key => {
                     if (data[key]?.username === user.username){
-                        throw {message: "Brukernavnet er opptatt"};
+                        throw new Error("Brukernavnet er opptatt");
                     }
                 })
                 
