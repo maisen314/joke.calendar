@@ -7,7 +7,7 @@ function ResponsePage() {
 
   function checkPasswordAndSubmit(answer){
     const dbName = `${answer.password}${answer.username}`;
-    fetch(`https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/${dbName}.json`)
+    fetch(`https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/${dbName}.json`)
             .then((response) => {
             return response?.json()
           }).then((data) => {
@@ -24,8 +24,9 @@ function ResponsePage() {
   }
 
   function submitDoorHandler(answer) {
+    const doorNo = answer.door;
     fetch(
-      "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/test.json",
+      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doors/${doorNo}.json`,
       {
         method: "POST",
         body: JSON.stringify(answer),

@@ -20,6 +20,7 @@ function ResponseForm(props){
             password: pwdRef.current.value,
             answer: messageRef.current.value,
             question: getTodaysQuestion(door),
+            door: door,
             submittedAt: new Date()
         };
         console.log(submittedForm);

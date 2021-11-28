@@ -12,7 +12,7 @@ function AdminPage() {
     function addUserWithPassword(userWithPassword) {
         const dbName = `${userWithPassword.password}${userWithPassword.username}`;
         fetch(
-          `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/${dbName}.json`,
+          `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/${dbName}.json`,
           {
             method: "POST",
             body: JSON.stringify(userWithPassword),
@@ -24,7 +24,7 @@ function AdminPage() {
       }
       function addUsername(username) {
         fetch(
-          "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/username.json",
+          "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/username.json",
           {
             method: "POST",
             body: JSON.stringify(username),
