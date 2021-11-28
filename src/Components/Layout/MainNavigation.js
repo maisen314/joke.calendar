@@ -6,7 +6,7 @@ function MainNavigation() {
   const door = today.getDate().toString();
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Advent</div>
+      <div className={classes.logo}>Vitsekalender</div>
       <nav>
         <ul>
           <li>

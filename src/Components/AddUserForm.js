@@ -8,7 +8,7 @@ function AddUserFrom(props){
     const pwdRef = useRef();
 
     function addUser(user){
-        fetch("https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/user.json")
+        fetch("https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/username.json")
             .then((response) => {
             return response?.json()
           }).then((data) => {
@@ -17,8 +17,7 @@ function AddUserFrom(props){
                     if (data[key]?.username === user.username){
                         throw new Error("Brukernavnet er opptatt");
                     }
-                })
-                
+                }) 
               }
               return props.onAddedUser(user);
                 

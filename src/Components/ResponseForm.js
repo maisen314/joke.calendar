@@ -1,6 +1,7 @@
 import  classes from './ResponseForm.module.css';
 import {useRef} from 'react';
 import {useParams} from 'react-router-dom';
+import img from '../img/1desember.jpeg';
 
 import Card from './ui/Card';
 
@@ -26,8 +27,10 @@ function ResponseForm(props){
     }
 
     function getTodaysQuestion(door){
-        const message = `Spørsmål ${door}`;
-        return message;
+        // const message = `Spørsmål ${door}`;
+        return (
+            <img alt="rebus 1. desember" src={img} width="400px"></img>
+        );
     }
 
     return <Card>
@@ -47,7 +50,6 @@ function ResponseForm(props){
             </div>
             <div className={classes.control}>
                 <label htmlFor='answer'>Ditt svar på luke nr. {door}</label>
-                {/* <button type='button' onClick={niceMessageHandler}>Generer en fin melding </button> */}
                 <textarea id='message' rows='5' ref={messageRef}/>
             </div>
             <div className={classes.actions}>

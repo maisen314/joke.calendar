@@ -4,19 +4,34 @@ import { useNavigate } from "react-router-dom";
 
 function AdminPage() {
     const navigate = useNavigate();
-    function addUser(answer) {
+    function addUser(user){
+      addUserWithPassword(user);
+      addUsername({"username": user.username, "submittedAt": user.submittedAt});
+    }
+
+    function addUserWithPassword(userWithPassword) {
         fetch(
-          "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/user.json",
+          "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/userWithPassword.json",
           {
             method: "POST",
-            body: JSON.stringify(answer),
+            body: JSON.stringify(userWithPassword),
             headers: {
               "Content-Type": "application/json",
             },
           }
-        ).then(() => {
-          navigate("/takk");
-        });
+        );
+      }
+      function addUsername(username) {
+        fetch(
+          "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/username.json",
+          {
+            method: "POST",
+            body: JSON.stringify(username),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        ).then(() => navigate("/takk"));
       }
     return (
         <div>
