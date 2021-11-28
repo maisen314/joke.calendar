@@ -2,19 +2,21 @@ import { Link } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
+  const today = new Date();
+  const door = today.getDate().toString();
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>2021</div>
+      <div className={classes.logo}>Advent</div>
       <nav>
         <ul>
           <li>
-            <Link to="/">Forside</Link>
+            <Link to="/">Oversikt</Link>
           </li>
           <li>
-            <Link to="/svarskjema">Svarskjema</Link>
+            <Link to={`/luke/${door}`}>Dagens luke</Link>
           </li>
           <li>
-            <Link to="/praktisk-informasjon">Praktisk informasjon</Link>
+            <Link to="/tidligere-luker">Tidligere luker</Link>
           </li>
           <li>
             <Link to="/admin">Admin</Link>

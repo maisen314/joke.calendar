@@ -1,27 +1,28 @@
-import ResponseForm from "../Components/ResponseForm";
-import { useNavigate } from "react-router-dom";
+import DoorWithResponse from "../Components/ResponseForm";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ResponsePage() {
   const navigate = useNavigate();
-  function registerGuestHandler(guest) {
+  const {door} = useParams();
+  function submitDoorHandler(answer) {
     fetch(
-      "https://wedding-8dcb9-default-rtdb.europe-west1.firebasedatabase.app/guests.json",
+      "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/test.json",
       {
         method: "POST",
-        body: JSON.stringify(guest),
+        body: JSON.stringify(answer),
         headers: {
           "Content-Type": "application/json",
         },
       }
     ).then(() => {
-      navigate.replace("/takk");
+      navigate("/takk");
     });
   }
   return (
     <div>
       <section>
-        <h1>Send inn ditt svar</h1>
-        <ResponseForm onRegisterGuest={registerGuestHandler} />
+        <h1>Luke {door}</h1>
+        <DoorWithResponse onSubmittedDoor={submitDoorHandler} />
       </section>
     </div>
   );
