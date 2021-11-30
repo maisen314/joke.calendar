@@ -18,6 +18,9 @@ function MainNavigation() {
           <li>
             <Link to="/admin">Admin</Link>
           </li>
+          <li>
+            <Link to="/legg-til-luke">Legg til spørsmål</Link>
+          </li>
         </ul>
       </nav>
     </header>

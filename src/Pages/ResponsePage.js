@@ -26,7 +26,7 @@ function ResponsePage() {
   function submitDoorHandler(answer) {
     const doorNo = answer.door;
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doors/${doorNo}.json`,
+      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/answer.json`,
       {
         method: "POST",
         body: JSON.stringify(answer),
