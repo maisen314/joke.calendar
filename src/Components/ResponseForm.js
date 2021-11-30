@@ -1,7 +1,8 @@
 import  classes from './ResponseForm.module.css';
 import {useEffect, useRef, useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
-// import img from '../img/1desember.jpeg';
+import img1 from '../img/1desember.jpeg';
+import img2 from '../img/2desember.jpeg';
 
 import Card from './ui/Card';
 
@@ -96,12 +97,32 @@ function ResponseForm(props){
           })
     }
 
+    function Question(props) {
+        if (question === "Rebus1"){
+            return (
+                <div id='question' ref={questionRef}> 
+                <img alt="rebus 1" src={img1} width="400px"></img>
+                </div>
+            )
+        } else if (question === "Rebus2"){
+            return (
+                <div id='question' ref={questionRef}> 
+                <img alt="rebus 2" src={img2} width="400px"></img>
+                </div>
+            )
+        } else {
+            return (
+                <div id='question' ref={questionRef}> 
+                        Spørsmål: {question}
+                </div>)
+        }
+        
+    }
+
     return <Card>
         <form className={classes.form} onSubmit={submitHandler}>
             <h2>Dagens spørsmål</h2>
-            <div id='question' ref={questionRef}> 
-                Spørsmål: {question}
-            </div>
+            <Question />
             <h3>Send inn ditt svar her</h3>
             <div className={classes.control}>
                 <label htmlFor='name'>Brukernavn</label>
