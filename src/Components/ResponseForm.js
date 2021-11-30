@@ -84,12 +84,12 @@ function ResponseForm(props){
                                 )
                             }).then(
                                     fetch(
-                                        `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQ/${randomId}.json`,
+                                        `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorIds/${randomId}.json`,
                                         {
                                           method: "DELETE",
                                         }
                                     )
-                                )
+                                ).catch((err) => {setQuestion(err)})
 
                     })
                 }  
