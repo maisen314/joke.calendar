@@ -3,24 +3,26 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function ResponsePage() {
   const navigate = useNavigate();
-  const {door} = useParams();
+  const { door } = useParams();
 
-  function checkPasswordAndSubmit(answer){
+  function checkPasswordAndSubmit(answer) {
     const dbName = `${answer.password}${answer.username}`;
-    fetch(`https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/${dbName}.json`)
-            .then((response) => {
-            return response?.json()
-          }).then((data) => {
-              if (data){
-                submitDoorHandler(answer);
-              } else{
-                throw new Error("Brukernavn eller passord er feil");
-              }
-            }).catch((err) => {
-              alert(err.message)
-            })
-              
-
+    fetch(
+      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/${dbName}.json`
+    )
+      .then((response) => {
+        return response?.json();
+      })
+      .then((data) => {
+        if (data) {
+          submitDoorHandler(answer);
+        } else {
+          throw new Error("Brukernavn eller passord er feil");
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   }
 
   function submitDoorHandler(answer) {
