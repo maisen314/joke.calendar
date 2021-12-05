@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
 
-import Card from "./ui/Card";
+import Card from "./Card";
 
 function ResponseForm(props) {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function ResponseForm(props) {
 
   useEffect(() => {
     if (trueDoor !== door) {
-      navigate("/");
+      navigate("/fuckdeg");
     } else {
       openDoor(door);
     }
@@ -106,19 +106,19 @@ function ResponseForm(props) {
     if (question === "Rebus1") {
       return (
         <div id="question" ref={questionRef}>
-          <img alt="rebus 1" src={img1} width="400px"></img>
+          <img alt="rebus 1" src={img1} width="100%"></img>
         </div>
       );
     } else if (question === "Rebus2") {
       return (
         <div id="question" ref={questionRef}>
-          <img alt="rebus 2" src={img2} width="400px"></img>
+          <img alt="rebus 2" src={img2} width="100%"></img>
         </div>
       );
     } else {
       return (
         <div id="question" ref={questionRef}>
-          Spørsmål: {question}
+          {question}
         </div>
       );
     }
@@ -129,18 +129,32 @@ function ResponseForm(props) {
       <form className={classes.form} onSubmit={submitHandler}>
         <h2>Dagens spørsmål</h2>
         <Question />
-        <h3>Send inn ditt svar her</h3>
+        <h3>Luke {door}</h3>
         <div className={classes.control}>
-          <label htmlFor="name">Brukernavn</label>
-          <input type="text" id="name" required ref={nameRef} />
+          <textarea
+            id="message"
+            rows="5"
+            ref={messageRef}
+            placeholder={`Skriv svaret her`}
+          />
         </div>
         <div className={classes.control}>
-          <label htmlFor="password">Passord</label>
-          <input type="password" id="password" required ref={pwdRef} />
+          <input
+            type="text"
+            id="name"
+            required
+            ref={nameRef}
+            placeholder="Brukernavn"
+          />
         </div>
         <div className={classes.control}>
-          <label htmlFor="answer">Ditt svar på luke nr. {door}</label>
-          <textarea id="message" rows="5" ref={messageRef} />
+          <input
+            type="password"
+            id="password"
+            required
+            ref={pwdRef}
+            placeholder="Passord"
+          />
         </div>
         <div className={classes.actions}>
           <button>Send inn</button>

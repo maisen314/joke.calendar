@@ -9,16 +9,16 @@ function MainNavigation() {
       <Link className={classes.logo} to="/">
         Vitsekalender
       </Link>
-      <nav classname={classes.navigationMenu}>
+      <nav className={classes.navigationMenu}>
         <ul className={classes.internalNavigationLinks}>
           <li className={classes.listItem}>
             <Link to={`/luke/${door}`}>Dagens luke</Link>
           </li>
-          <li className={classes.listItem}>
+          {/* <li className={classes.listItem}>
             <Link to="/tidligere-luker">Tidligere luker</Link>
-          </li>
+          </li> */}
           <li className={classes.listItem}>
-            <Link to="/admin">Ny bruker</Link>
+            <Link to="/ny-bruker">Ny bruker</Link>
           </li>
           <li className={classes.listItem}>
             <Link to="/legg-til-luke">Nytt spørsmål</Link>

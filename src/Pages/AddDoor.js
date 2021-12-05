@@ -45,7 +45,6 @@ function AddDoor() {
   return (
     <div>
       <section>
-        <h1>Legg inn spørsmål og svar</h1>
         <AddDoorForm onAddedQnA={addDoor} />
       </section>
     </div>

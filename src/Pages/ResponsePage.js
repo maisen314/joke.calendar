@@ -1,10 +1,8 @@
 import DoorWithResponse from "../Components/ResponseForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ResponsePage() {
   const navigate = useNavigate();
-  const { door } = useParams();
-
   function checkPasswordAndSubmit(answer) {
     const dbName = `${answer.password}${answer.username}`;
     fetch(
@@ -43,7 +41,6 @@ function ResponsePage() {
   return (
     <div>
       <section>
-        <h1>Luke {door}</h1>
         <DoorWithResponse onSubmittedDoor={checkPasswordAndSubmit} />
       </section>
     </div>

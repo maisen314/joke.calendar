@@ -17,10 +17,14 @@
     height: 60px;
     display: flex;
     align-items: center;
+    overflow:hidden;
 }
 
 .listItem {
     margin-right: 3.225rem;
+    @media (max-width: 500px) {
+        display: none;
+    }
     &:first-child {
         margin-left: 3.225rem;
     }

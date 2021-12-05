@@ -1,7 +1,7 @@
 import classes from "./ResponseForm.module.css";
 import { useRef } from "react";
 
-import Card from "./ui/Card";
+import Card from "./Card";
 
 function AddUserFrom(props) {
   const nameRef = useRef();
@@ -49,12 +49,22 @@ function AddUserFrom(props) {
       <form className={classes.form} onSubmit={submitHandler}>
         <h3>Velg brukernavn og passord</h3>
         <div className={classes.control}>
-          <label htmlFor="name">Brukernavn</label>
-          <input type="text" id="name" required ref={nameRef} />
+          <input
+            type="text"
+            id="name"
+            required
+            ref={nameRef}
+            placeholder="Brukernavn"
+          />
         </div>
         <div className={classes.control}>
-          <label htmlFor="password">Passord</label>
-          <input type="password" id="password" required ref={pwdRef} />
+          <input
+            type="password"
+            id="password"
+            required
+            ref={pwdRef}
+            placeholder="Passord"
+          />
         </div>
         <div id="error"> </div>
         <div className={classes.actions}>
