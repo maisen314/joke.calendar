@@ -1,10 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 function AdminPage() {
   const username = useRef();
   const password = useRef();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([
+  const [users] = useState([
     { username: "bruker1", score: 0 },
     { username: "bruker2", score: 3 },
   ]);
