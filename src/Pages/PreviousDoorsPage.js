@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "../Components/Card";
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
+import img3 from "../img/3desember.jpeg";
 
 function Question({ id, door }) {
   const [visible, setVisible] = useState(false);
@@ -33,6 +34,12 @@ function Question({ id, door }) {
       return (
         <div id="question">
           <img alt="rebus 2" src={img2} width="100%"></img>
+        </div>
+      );
+    } else if (qna.question === "Rebus3") {
+      return (
+        <div id="question">
+          <img alt="rebus 3" src={img3} width="100%"></img>
         </div>
       );
     } else {
