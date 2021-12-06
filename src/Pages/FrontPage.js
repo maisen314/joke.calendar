@@ -6,9 +6,6 @@ function FrontPage() {
   const today = new Date();
   const door = today.getDate().toString();
   const [userData, setUserData] = useState([]);
-  //   { username: "bruker1", score: 0 },
-  //   { username: "bruker2", score: 3 },
-  // ]);
   useEffect(() => {
     fetch(
       `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/username.json`
@@ -32,9 +29,9 @@ function FrontPage() {
           <li>
             <Link to={`/luke/${door}`}>Dagens luke</Link>
           </li>
-          {/* <li>
+          <li>
             <Link to="/tidligere-luker">Tidligere luker</Link>
-          </li> */}
+          </li>
           <li>
             <Link to="/ny-bruker">Ny bruker</Link>
           </li>

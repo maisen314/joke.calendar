@@ -45,12 +45,10 @@ function ResponseForm(props) {
       `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/question.json`
     )
       .then((response) => {
-        console.log(response);
         return response?.json();
       })
       .then((data) => {
         if (data) {
-          console.log("openeddata", data);
           var keys = Object.keys(data);
           setQuestion(data[keys[0]].question);
         } else {
@@ -63,8 +61,6 @@ function ResponseForm(props) {
             .then((data) => {
               var keys = Object.keys(data);
               var randomId = keys[Math.floor(Math.random() * keys.length)];
-              console.log(keys);
-              console.log("randomid", randomId);
               fetch(
                 `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQ/${randomId}.json`
               )

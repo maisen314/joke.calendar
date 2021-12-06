@@ -1,13 +1,49 @@
 import { useState, useEffect } from "react";
 import Card from "../Components/Card";
+import img1 from "../img/1desember.jpeg";
+import img2 from "../img/2desember.jpeg";
 
-function Question(props) {
+function Question({ id, door }) {
   const [visible, setVisible] = useState(false);
+  const [qna, setQna] = useState({});
+
+  useEffect(() => {
+    console.log(id);
+    fetch(
+      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQnA/${id}.json`
+    )
+      .then((response) => {
+        return response?.json();
+      })
+      .then((data) => {
+        if (data) {
+          var keys = Object.keys(data.qna);
+          setQna(data.qna[keys[0]]);
+        }
+      });
+  }, [id]);
+  function StringOrImg(props) {
+    if (qna.question === "Rebus1") {
+      return (
+        <div id="question">
+          <img alt="rebus 1" src={img1} width="100%"></img>
+        </div>
+      );
+    } else if (qna.question === "Rebus2") {
+      return (
+        <div id="question">
+          <img alt="rebus 2" src={img2} width="100%"></img>
+        </div>
+      );
+    } else {
+      return <div id="question">{qna.question}</div>;
+    }
+  }
   return (
-    <Card>
-      <h2>Luke {props.value.door}</h2>
-      <div>{props.value.question}</div>
-      {visible && <div>{props.value.answer}</div>}
+    <Card key={id}>
+      <h2>Luke {door}</h2>
+      <StringOrImg />
+      {visible && <div>{qna.answer}</div>}
       <button onClick={() => setVisible(!visible)}>
         {visible ? "Skjul svar" : "Vis svar"}
       </button>
@@ -16,18 +52,35 @@ function Question(props) {
 }
 
 function PreviousDoorsPage() {
-  const [qnaList, setQnaList] = useState([]);
+  const [idList, setIdList] = useState([]);
   useEffect(() => {
-    setQnaList([
-      { door: 1, question: "Hvem er du", answer: "Ikke deg" },
-      { door: 2, question: "Finn én feil: Hvem, hva, vors", answer: "hvor" },
-    ]);
+    fetch(
+      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors.json`
+    )
+      .then((response) => {
+        return response?.json();
+      })
+      .then((data) => {
+        if (data) {
+          console.log(data);
+          var filteredData = data.filter((x) => x);
+          filteredData.pop();
+          var prevQuestionsObj = Object.keys(filteredData);
+          var qObj = prevQuestionsObj.map((x) => {
+            return {
+              question: filteredData[x].question,
+              door: parseInt(x) + 1,
+            };
+          });
+          var ids = qObj.map((x) => {
+            var key = Object.keys(x.question);
+            return { id: x.question[key[0]].id, door: x.door };
+          });
+          setIdList(ids);
+        }
+      });
   }, []);
-  return qnaList.map((qna) => (
-    <Question
-      value={{ door: qna.door, question: qna.question, answer: qna.answer }}
-    />
-  ));
+  return idList.map((x) => <Question key={x.id} id={x.id} door={x.door} />);
 }
 
 export default PreviousDoorsPage;
