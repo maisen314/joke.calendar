@@ -83,7 +83,7 @@ function PreviousDoorsPage() {
             var key = Object.keys(x.question);
             return { id: x.question[key[0]].id, door: x.door };
           });
-          setIdList(ids);
+          setIdList(ids.reverse());
         }
       });
   }, []);

@@ -14,9 +14,9 @@ function MainNavigation() {
           <li className={classes.listItem}>
             <Link to={`/luke/${door}`}>Dagens luke</Link>
           </li>
-          {/* <li className={classes.listItem}>
+          <li className={classes.listItem}>
             <Link to="/tidligere-luker">Tidligere luker</Link>
-          </li> */}
+          </li>
           <li className={classes.listItem}>
             <Link to="/ny-bruker">Ny bruker</Link>
           </li>
