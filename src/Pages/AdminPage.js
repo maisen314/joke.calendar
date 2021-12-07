@@ -4,7 +4,7 @@ function AdminPage() {
   const username = useRef();
   const password = useRef();
   const doorNo = useRef();
-  const [loggedIn, setLoggedIn] = useState(true); //TODO: false
+  const [loggedIn, setLoggedIn] = useState(false);
   const [rerenderHack, setRerenderHack] = useState(false);
   const [door, setDoor] = useState("");
   const [qna, setQna] = useState({});
