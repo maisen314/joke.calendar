@@ -5,22 +5,27 @@ import classes from "./FrontPage.module.scss";
 function FrontPage() {
   const today = new Date();
   const door = today.getDate().toString();
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({});
   useEffect(() => {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/username.json`
+      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/score.json`
     )
       .then((response) => {
         return response?.json();
       })
       .then((data) => {
         if (data) {
-          var keys = Object.keys(data);
-          setUserData(keys.map((x) => data[x].username));
+          setUserData(data);
         }
       });
   }, []);
-
+  var sortedUserList = [];
+  for (var username in userData) {
+    sortedUserList.push([username, userData[username]]);
+  }
+  sortedUserList.sort(function (a, b) {
+    return b[1] - a[1];
+  });
   return (
     <div>
       <section>
@@ -41,13 +46,20 @@ function FrontPage() {
         </ul>
       </section>
       <section>
-        <h2>Brukere</h2>
-        <div>Highscoreliste - work in progress (ikke sortert etter poeng)</div>
-        <ol>
-          {userData.map((userData) => (
-            <li key={userData}>{userData}</li>
-          ))}
-        </ol>
+        <h2>Highscore</h2>
+
+        {sortedUserList !== [] && (
+          <table>
+            <tbody>
+              {sortedUserList.map((username) => (
+                <tr key={username[0]}>
+                  <td>{username[0]}</td>
+                  <td>{username[1]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
     </div>
   );
