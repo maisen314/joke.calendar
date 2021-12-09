@@ -106,6 +106,7 @@ function AdminPage() {
       </form>
     );
   }
+
   function LoggedIn() {
     const usernames = Object.keys(users);
     return (
@@ -118,15 +119,25 @@ function AdminPage() {
           <button>butt</button>
         </form>
         <form onSubmit={updateUsers}>
-          <ul>
-            {usernames.map((username) => (
-              <li key={username}>
-                {username} {users[username]}{" "}
-                <button onClick={() => givePoints(username, "+")}>+1</button>
-                <button onClick={() => givePoints(username, "-")}>-1</button>
-              </li>
-            ))}
-          </ul>
+          <table>
+            <tbody>
+              {usernames.map((username) => (
+                <tr key={username}>
+                  <td>
+                    {username} {users[username]}{" "}
+                  </td>
+                  <td>
+                    <button onClick={() => givePoints(username, "+")}>
+                      +1
+                    </button>
+                    <button onClick={() => givePoints(username, "-")}>
+                      -1
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <button>Oppdater</button>
         </form>
       </div>

@@ -1,6 +1,6 @@
 import classes from "./ResponseForm.module.css";
 import { useEffect, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
 import img3 from "../img/3desember.jpeg";
@@ -8,23 +8,18 @@ import img3 from "../img/3desember.jpeg";
 import Card from "./Card";
 
 function ResponseForm(props) {
-  const navigate = useNavigate();
   const nameRef = useRef();
   const pwdRef = useRef();
   const messageRef = useRef();
   const questionRef = useRef();
-  const { door } = useParams();
+
   const [question, setQuestion] = useState("");
   const today = new Date();
-  const trueDoor = today.getDate().toString();
+  const door = today.getDate().toString();
 
   useEffect(() => {
-    if (trueDoor !== door) {
-      navigate("/fuckdeg");
-    } else {
-      openDoor(door);
-    }
-  }, [door, trueDoor, navigate]);
+    openDoor(door);
+  }, [door]);
 
   function submitHandler(event) {
     event.preventDefault();
@@ -113,13 +108,12 @@ function ResponseForm(props) {
         </div>
       );
     } else if (question === "Rebus3") {
-        return (
-          <div id="question" ref={questionRef}>
-            <img alt="rebus 3" src={img3} width="100%"></img>
-          </div>
-        );
-    }
-     else {
+      return (
+        <div id="question" ref={questionRef}>
+          <img alt="rebus 3" src={img3} width="100%"></img>
+        </div>
+      );
+    } else {
       return (
         <div id="question" ref={questionRef}>
           {question}
