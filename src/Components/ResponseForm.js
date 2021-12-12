@@ -1,5 +1,6 @@
 import classes from "./ResponseForm.module.css";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
 import img3 from "../img/3desember.jpeg";
@@ -16,6 +17,7 @@ function ResponseForm(props) {
   const [question, setQuestion] = useState("");
   const today = new Date();
   const door = today.getDate().toString();
+  const isAdvent = today <= new Date().setDate(24);
 
   useEffect(() => {
     openDoor(door);
@@ -55,43 +57,45 @@ function ResponseForm(props) {
               return response?.json();
             })
             .then((data) => {
-              var keys = Object.keys(data);
-              var randomId = keys[Math.floor(Math.random() * keys.length)];
-              fetch(
-                `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQ/${randomId}.json`
-              )
-                .then((response) => {
-                  return response?.json();
-                })
-                .then((data) => {
-                  var keys = Object.keys(data);
-                  var q = data[keys[0]].question;
-                  setQuestion(q);
-                  fetch(
-                    `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/question.json`,
-                    {
-                      method: "POST",
-                      body: JSON.stringify({ question: q, id: randomId }),
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                    }
-                  );
-                })
-                .then(
-                  fetch(
-                    `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorIds/${randomId}.json`,
-                    {
-                      method: "DELETE",
-                    }
-                  )
+              if (data) {
+                var keys = Object.keys(data);
+                var randomId = keys[Math.floor(Math.random() * keys.length)];
+                fetch(
+                  `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQ/${randomId}.json`
                 )
-                .catch((err) => {
-                  setQuestion(err);
-                });
-            });
+                  .then((response) => {
+                    return response?.json();
+                  })
+                  .then((data) => {
+                    var keys = Object.keys(data);
+                    var q = data[keys[0]].question;
+                    setQuestion(q);
+                    fetch(
+                      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/question.json`,
+                      {
+                        method: "POST",
+                        body: JSON.stringify({ question: q, id: randomId }),
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+                  })
+                  .then(
+                    fetch(
+                      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorIds/${randomId}.json`,
+                      {
+                        method: "DELETE",
+                      }
+                    )
+                  )
+                  .catch((err) => {
+                    setQuestion(err);
+                  });
+              } else {setQuestion("Tomt for spørsmål :(")}
+          });
         }
-      });
+      }).catch((err) => setQuestion("Tomt for spørsmål :("));
   }
 
   function Question(props) {
@@ -128,8 +132,8 @@ function ResponseForm(props) {
     }
   }
 
-  return (
-    <Card>
+  return ( <div>
+    {isAdvent && <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <h2>Dagens spørsmål</h2>
         <Question />
@@ -164,7 +168,17 @@ function ResponseForm(props) {
           <button>Send inn</button>
         </div>
       </form>
-    </Card>
+    </Card>}
+    {!isAdvent && 
+    <div>
+    <div>
+      Advent er over. 
+    </div>
+    <div>
+      <Link className={classes.lenke} to="/tidligere-spørsmål" >Du kan se her fram til neste advent</Link>
+    </div>
+    </div>}
+    </div>
   );
 }
 
