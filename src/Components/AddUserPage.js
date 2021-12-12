@@ -1,5 +1,6 @@
 import AddUserFrom from "../Components/AddUserForm";
 import { Link, useNavigate } from "react-router-dom";
+import config from "../config.json"
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function AdminPage() {
   function addUserWithPassword(userWithPassword) {
     const dbName = `${userWithPassword.password}${userWithPassword.username}`;
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/${dbName}.json`,
+      `${config.FIREBASE_URL}users/${dbName}.json`,
       {
         method: "POST",
         body: JSON.stringify(userWithPassword),
@@ -23,7 +24,7 @@ function AdminPage() {
   }
   function addUsername(username) {
     fetch(
-      "https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/username.json",
+      `${config.FIREBASE_URL}users/username.json`,
       {
         method: "POST",
         body: JSON.stringify(username),

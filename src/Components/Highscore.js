@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Card from "../Components/Card";
+import config from "../config.json";
 
 function Highscore() {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/score.json`
+      `${config.FIREBASE_URL}score.json`
     )
       .then((response) => {
         return response?.json();

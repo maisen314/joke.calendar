@@ -1,15 +1,15 @@
 import classes from "./ResponseForm.module.css";
 import { useRef } from "react";
-
+import config from "../config.json"
 import Card from "./Card";
 
 function AddUserFrom(props) {
   const nameRef = useRef();
   const pwdRef = useRef();
 
-  function addUser(user) {
+  function tryAddUser(user) {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/username.json`
+      `${config.FIREBASE_URL}users/username.json`
     )
       .then((response) => {
         return response?.json();
@@ -38,7 +38,7 @@ function AddUserFrom(props) {
       submittedAt: new Date(),
     };
     try {
-      addUser(submittedUser);
+      tryAddUser(submittedUser);
     } catch (err) {
       console.log(err);
     }

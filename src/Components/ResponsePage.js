@@ -1,12 +1,13 @@
 import DoorWithResponse from "../Components/ResponseForm";
 import { useNavigate } from "react-router-dom";
+import config from "../config.json";
 
 function ResponsePage() {
   const navigate = useNavigate();
   function checkPasswordAndSubmit(answer) {
     const dbName = `${answer.password}${answer.username}`;
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/users/${dbName}.json`
+      `${config.FIREBASE_URL}users/${dbName}.json`
     )
       .then((response) => {
         return response?.json();
@@ -26,7 +27,7 @@ function ResponsePage() {
   function submitDoorHandler(answer) {
     const doorNo = answer.door;
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/answer.json`,
+      `${config.FIREBASE_URL}openedDoors/${doorNo}/answer.json`,
       {
         method: "POST",
         body: JSON.stringify(answer),

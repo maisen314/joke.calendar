@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "../Components/Card";
+import config from "../config.json";
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
 import img3 from "../img/3desember.jpeg";
@@ -12,7 +13,7 @@ function Question({ id, door }) {
   useEffect(() => {
     console.log(id);
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQnA/${id}.json`
+      `${config.FIREBASE_URL}doorsQnA/${id}.json`
     )
       .then((response) => {
         return response?.json();
@@ -69,7 +70,7 @@ function PreviousDoorsPage() {
   const [idList, setIdList] = useState([]);
   useEffect(() => {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors.json`
+      `${config.FIREBASE_URL}openedDoors.json`
     )
       .then((response) => {
         return response?.json();

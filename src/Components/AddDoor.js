@@ -1,12 +1,13 @@
-import AddDoorForm from "../Components/AddDoorForm";
+import AddDoorForm from "./AddDoorForm";
 import { useNavigate } from "react-router-dom";
+import config from "../config.json"
 
 function AddDoor() {
   const navigate = useNavigate();
 
   function addDoor(door) {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQnA/${door.id}/qna.json`,
+      `${config.FIREBASE_URL}doorsQnA/${door.id}/qna.json`,
       {
         method: "POST",
         body: JSON.stringify(door),
@@ -17,7 +18,7 @@ function AddDoor() {
     )
       .then(
         fetch(
-          `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQ/${door.id}.json`,
+          `${config.FIREBASE_URL}doorsQ/${door.id}.json`,
           {
             method: "POST",
             body: JSON.stringify({ question: door.question }),
@@ -29,7 +30,7 @@ function AddDoor() {
       )
       .then(
         fetch(
-          `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorIds/${door.id}.json`,
+          `${config.FIREBASE_URL}doorIds/${door.id}.json`,
           {
             method: "POST",
             body: JSON.stringify(door.id),

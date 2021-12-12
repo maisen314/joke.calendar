@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import config from "../config.json";
 
 function AdminPage() {
   const username = useRef();
@@ -14,7 +15,7 @@ function AdminPage() {
 
   useEffect(() => {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/score.json`
+      `${config.FIREBASE_URL}score.json`
     )
       .then((response) => {
         return response?.json();
@@ -27,7 +28,7 @@ function AdminPage() {
   useEffect(() => {
     if (door !== "") {
       fetch(
-        `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${door}.json`
+        `${config.FIREBASE_URL}openedDoors/${door}.json`
       )
         .then((response) => {
           return response?.json();
@@ -37,7 +38,7 @@ function AdminPage() {
           const qkey = Object.keys(data.question);
           const qid = data.question[qkey[0]].id;
           fetch(
-            `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQnA/${qid}.json`
+            `${config.FIREBASE_URL}doorsQnA/${qid}.json`
           )
             .then((response) => {
               return response?.json();
@@ -86,7 +87,7 @@ function AdminPage() {
   function updateUsers(event) {
     event.preventDefault();
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/score.json`,
+      `${config.FIREBASE_URL}score.json`,
       {
         method: "PATCH",
         body: JSON.stringify(users),

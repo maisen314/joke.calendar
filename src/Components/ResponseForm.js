@@ -1,12 +1,14 @@
 import classes from "./ResponseForm.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import config from "../config.json"
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
 import img3 from "../img/3desember.jpeg";
 import img4 from "../img/4desember.jpeg";
 
 import Card from "./Card";
+
 
 function ResponseForm(props) {
   const nameRef = useRef();
@@ -40,7 +42,7 @@ function ResponseForm(props) {
 
   function openDoor(doorNo) {
     fetch(
-      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/question.json`
+      `${config.FIREBASE_URL}openedDoors/${doorNo}/question.json`
     )
       .then((response) => {
         return response?.json();
@@ -51,7 +53,7 @@ function ResponseForm(props) {
           setQuestion(data[keys[0]].question);
         } else {
           fetch(
-            `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorIds.json`
+            `${config.FIREBASE_URL}doorIds.json`
           )
             .then((response) => {
               return response?.json();
@@ -61,7 +63,7 @@ function ResponseForm(props) {
                 var keys = Object.keys(data);
                 var randomId = keys[Math.floor(Math.random() * keys.length)];
                 fetch(
-                  `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorsQ/${randomId}.json`
+                  `${config.FIREBASE_URL}doorsQ/${randomId}.json`
                 )
                   .then((response) => {
                     return response?.json();
@@ -71,7 +73,7 @@ function ResponseForm(props) {
                     var q = data[keys[0]].question;
                     setQuestion(q);
                     fetch(
-                      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/openedDoors/${doorNo}/question.json`,
+                      `${config.FIREBASE_URL}openedDoors/${doorNo}/question.json`,
                       {
                         method: "POST",
                         body: JSON.stringify({ question: q, id: randomId }),
@@ -83,7 +85,7 @@ function ResponseForm(props) {
                   })
                   .then(
                     fetch(
-                      `https://adventofjokes-default-rtdb.europe-west1.firebasedatabase.app/doorIds/${randomId}.json`,
+                      `${config.FIREBASE_URL}doorIds/${randomId}.json`,
                       {
                         method: "DELETE",
                       }

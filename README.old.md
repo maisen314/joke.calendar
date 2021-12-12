@@ -1,2 +1,2 @@
-# joke.calender
-Calender of jokes
+# joke.calendar
+Calendar of jokes
