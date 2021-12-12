@@ -1,5 +1,5 @@
 import AddUserFrom from "../Components/AddUserForm";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ function AdminPage() {
       <section>
         <AddUserFrom onAddedUser={addUser} />
       </section>
+      <Link to="/admin">.</Link>
     </div>
   );
 }

@@ -28,18 +28,20 @@ function AddDoorForm(props) {
       <form className={classes.form} onSubmit={submitHandler}>
         <h3>Legg inn en ny luke</h3>
         <div className={classes.control}>
-          <input
+          <textarea
             type="text"
             id="question"
             required
+            rows="5"
             ref={qRef}
             placeholder="Spørsmål"
           />
         </div>
         <div className={classes.control}>
-          <input
+          <textarea
             type="text"
             id="answer"
+            rows="5"
             required
             ref={aRef}
             placeholder="Svar"

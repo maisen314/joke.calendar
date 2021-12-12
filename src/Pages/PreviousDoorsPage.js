@@ -3,6 +3,7 @@ import Card from "../Components/Card";
 import img1 from "../img/1desember.jpeg";
 import img2 from "../img/2desember.jpeg";
 import img3 from "../img/3desember.jpeg";
+import img4 from "../img/4desember.jpeg";
 
 function Question({ id, door }) {
   const [visible, setVisible] = useState(false);
@@ -40,6 +41,12 @@ function Question({ id, door }) {
       return (
         <div id="question">
           <img alt="rebus 3" src={img3} width="100%"></img>
+        </div>
+      );
+    } else if (qna.question === "Rebus4") {
+      return (
+        <div id="question">
+          <img alt="rebus 4" src={img4} width="100%"></img>
         </div>
       );
     } else {
