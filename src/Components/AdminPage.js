@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import config from "../config.json";
+import classes from './Admin.module.scss';
 
 function AdminPage() {
   const username = useRef();
@@ -111,7 +112,7 @@ function AdminPage() {
   function LoggedIn() {
     const usernames = Object.keys(users);
     return (
-      <div>
+      <div className={classes.admin}>
         <form onSubmit={setSetDoor}>
           <input type="text" ref={doorNo} />
           <div>Spørsmål</div>
