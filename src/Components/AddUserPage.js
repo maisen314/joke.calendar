@@ -1,6 +1,7 @@
 import AddUserFrom from "../Components/AddUserForm";
 import { Link, useNavigate } from "react-router-dom";
 import config from "../config.json"
+import classes from './AddUser.module.scss';
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function AdminPage() {
       <section>
         <AddUserFrom onAddedUser={addUser} />
       </section>
-      <Link to="/admin">.</Link>
+      <Link to="/admin" className={classes.secretlink}>.</Link>
     </div>
   );
 }

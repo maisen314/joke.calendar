@@ -4,8 +4,9 @@ html, body {
 }
 .main {
     display: flex;
+    background-color: #282c34;
+    min-height: 100vh;
     flex-direction: column;
-  
     font-family: monospace, Arial, system-ui, sans-serif;
 }
 
